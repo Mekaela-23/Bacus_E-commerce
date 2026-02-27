@@ -4,13 +4,13 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Homepage from './app/main/homepage/page';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Homepage/>
+    <Homepage/>  
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

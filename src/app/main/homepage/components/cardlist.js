@@ -1,35 +1,93 @@
-import React from "react";
-import ImageCard from "../../../../components/ui/card";
+'use client';
 
-export default function CardList() {
-    return (
-        <div style={containerStyle}>
-            <ImageCard
-            image="https://t3.ftcdn.net/jpg/01/18/09/04/240_F_118090481_nhnEzJixwzuAVk5f0ynZ9p3pAswOxTWb.jpg"
-            title="Mountain View"
-            description="A beautiful mountain landscape."
-            />
+import { ProductCard, CategoryCard } from '../../../../components/ui/card';
 
-            <ImageCard
-            image="https://t3.ftcdn.net/jpg/01/18/09/04/240_F_118090481_nhnEzJixwzuAVk5f0ynZ9p3pAswOxTWb.jpg"
-            title="Ocean Breeze"
-            description="Relaxing ocean scenery."
-            />
+// ── Product Grid ──
+export function ProductCardList({ products = [], onAddToCart }) {
+  return (
+    <>
+      <style>{`
+        .product-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+        }
 
-            <ImageCard
-            image="https://t3.ftcdn.net/jpg/01/18/09/04/240_F_118090481_nhnEzJixwzuAVk5f0ynZ9p3pAswOxTWb.jpg"
-            title="City Lights"
-            description="Nigth view of the city skyline."
-            />
-        </div>
-    );
+        /* Laptop (1024px) */
+        @media (max-width: 1024px) {
+          .product-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+          }
+        }
+
+        /* iPad / Tablet (768px) */
+        @media (max-width: 768px) {
+          .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+        }
+
+        /* Mobile (480px and below) */
+        @media (max-width: 480px) {
+          .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+        }
+
+        /* Small Mobile (360px and below) */
+        @media (max-width: 360px) {
+          .product-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+        }
+      `}</style>
+
+      <div className="product-grid">
+        {products.map((product, i) => (
+          <ProductCard key={i} {...product} onAddToCart={onAddToCart} />
+        ))}
+      </div>
+    </>
+  );
 }
 
+// ── Category Grid ──
+export function CategoryCardList({ categories = [] }) {
+  return (
+    <>
+      <style>{`
+        .category-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
 
-const containerStyle = {
-    display: "flex",
-    gap: "20px",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    padding: "40px",
+        @media (max-width: 768px) {
+          .category-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .category-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+        }
+      `}</style>
+
+      <div className="category-grid">
+        {categories.map((cat, i) => (
+          <CategoryCard key={i} {...cat} />
+        ))}
+      </div>
+    </>
+  );
 }
+
+export default ProductCardList;

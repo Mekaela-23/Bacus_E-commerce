@@ -74,7 +74,7 @@ export default function Navbar({ cartCount = 0 }) {
           justifyContent: 'space-between',
           height: '64px',
         }}>
-          {/* Logo */}
+    
           <a href="/" style={{ textDecoration: 'none' }}>
             <span style={{
               fontFamily: "'Playfair Display', serif",
@@ -85,7 +85,7 @@ export default function Navbar({ cartCount = 0 }) {
             }}>Veloure</span>
           </a>
 
-          {/* Desktop Nav Links */}
+         
           <div className="nav-links" style={{ display: 'flex', gap: '32px' }}>
             <a href="/" className="active">Home</a>
             <a href="/women">Women</a>
@@ -94,28 +94,28 @@ export default function Navbar({ cartCount = 0 }) {
             <a href="/about">About</a>
           </div>
 
-          {/* Icons */}
+          
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            {/* Search */}
+           
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex' }}>
               <svg width="20" height="20" fill="none" stroke="#1e1a16" strokeWidth="2" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
             </button>
 
-            {/* Wishlist */}
+           
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex' }}>
               <svg width="20" height="20" fill="none" stroke="#1e1a16" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
               </svg>
             </button>
 
-            {/* User icon — custom PNG */}
+        
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex' }}>
               <img src="https://i.ibb.co/VpHdsQ2z/user.png" alt="Account" width={22} height={22} style={{ objectFit: 'contain' }} />
             </button>
 
-            {/* Cart icon — custom PNG with badge */}
+           
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, position: 'relative', display: 'flex' }}>
               <img src="https://i.ibb.co/VPz8Bh4/shopping-cart.png" alt="Cart" width={22} height={22} style={{ objectFit: 'contain' }} />
               {cartCount > 0 && (
@@ -140,7 +140,7 @@ export default function Navbar({ cartCount = 0 }) {
               )}
             </button>
 
-            {/* Hamburger */}
+          
             <button className="hamburger" onClick={() => setMenuOpen(o => !o)}>
               {menuOpen ? '✕' : '☰'}
             </button>
@@ -148,7 +148,7 @@ export default function Navbar({ cartCount = 0 }) {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+     
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/women" onClick={() => setMenuOpen(false)}>Women</a>

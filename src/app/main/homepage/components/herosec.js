@@ -1,6 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+
 export default function HeroSection() {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <>
       <section style={{
@@ -39,12 +43,26 @@ export default function HeroSection() {
             Discover the freshest styles for the season.<br />
             Elevate your wardrobe with curated pieces.
           </p>
-          <button style={{
-            padding: '12px 30px', fontSize: 11, letterSpacing: '2px',
-            textTransform: 'uppercase', cursor: 'pointer',
-            fontFamily: "'Jost', sans-serif", fontWeight: 600,
-            border: 'none', background: '#c8a96e', color: '#1e1a16',
-          }}>Shop Now</button>
+
+          <button
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+              padding: '12px 30px',
+              fontSize: 11,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              fontFamily: "'Jost', sans-serif",
+              fontWeight: 600,
+              border: 'none',
+              background: hovered ? '#ffffff' : '#c8a96e',
+              color: hovered ? '#1e1a16' : '#1e1a16',
+              transition: 'background 0.3s ease, color 0.3s ease',
+            }}
+          >
+            Shop Now
+          </button>
         </div>
       </section>
 

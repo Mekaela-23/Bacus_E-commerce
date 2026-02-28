@@ -2,7 +2,6 @@
 
 import { ProductCard, CategoryCard } from '../../../../components/ui/card';
 
-// ── Product Grid ──
 export function ProductCardList({ products = [], onAddToCart }) {
   return (
     <>
@@ -13,7 +12,6 @@ export function ProductCardList({ products = [], onAddToCart }) {
           gap: 16px;
         }
 
-        /* Laptop (1024px) */
         @media (max-width: 1024px) {
           .product-grid {
             grid-template-columns: repeat(3, 1fr);
@@ -21,7 +19,6 @@ export function ProductCardList({ products = [], onAddToCart }) {
           }
         }
 
-        /* iPad / Tablet (768px) */
         @media (max-width: 768px) {
           .product-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -29,7 +26,6 @@ export function ProductCardList({ products = [], onAddToCart }) {
           }
         }
 
-        /* Mobile (480px and below) */
         @media (max-width: 480px) {
           .product-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -37,7 +33,6 @@ export function ProductCardList({ products = [], onAddToCart }) {
           }
         }
 
-        /* Small Mobile (360px and below) */
         @media (max-width: 360px) {
           .product-grid {
             grid-template-columns: 1fr;
@@ -55,17 +50,28 @@ export function ProductCardList({ products = [], onAddToCart }) {
   );
 }
 
-// ── Category Grid ──
 export function CategoryCardList({ categories = [] }) {
   return (
     <>
       <style>{`
+        .category-section {
+          padding: 0 clamp(16px, 4vw, 60px);
+        }
+
         .category-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
 
+        /* Laptop */
+        @media (max-width: 1024px) {
+          .category-grid {
+            gap: 16px;
+          }
+        }
+
+        /* iPad / Tablet */
         @media (max-width: 768px) {
           .category-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -73,7 +79,16 @@ export function CategoryCardList({ categories = [] }) {
           }
         }
 
+        /* Mobile */
         @media (max-width: 480px) {
+          .category-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 360px) {
           .category-grid {
             grid-template-columns: 1fr;
             gap: 12px;
@@ -81,10 +96,12 @@ export function CategoryCardList({ categories = [] }) {
         }
       `}</style>
 
-      <div className="category-grid">
-        {categories.map((cat, i) => (
-          <CategoryCard key={i} {...cat} />
-        ))}
+      <div className="category-section">
+        <div className="category-grid">
+          {categories.map((cat, i) => (
+            <CategoryCard key={i} {...cat} />
+          ))}
+        </div>
       </div>
     </>
   );

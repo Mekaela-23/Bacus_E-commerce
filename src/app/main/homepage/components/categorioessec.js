@@ -22,43 +22,77 @@ export default function CategoriesSection() {
   return (
     <>
       <style>{`
+
+        .cat-section {
+          background: #faf7f4;
+          padding: clamp(32px, 5vw, 56px) clamp(16px, 4vw, 60px);
+          box-sizing: border-box;
+          width: 100%;
+        }
+
         .cat-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 24px;
-          max-width: 1200px;
-          margin: 0 auto;
+          width: 100%;
+          box-sizing: border-box;
         }
+
         .cat-img-wrapper {
           width: 100%;
-          height: 220px;
+          height: 240px;
           overflow: hidden;
           flex-shrink: 0;
         }
-        @media (max-width: 768px) {
+
+        /* Laptop: 1024px – 1279px */
+        @media (max-width: 1279px) {
+          .cat-grid { gap: 20px; }
+          .cat-img-wrapper { height: 210px; }
+        }
+
+        /* iPad / Tablet: 768px – 1023px */
+        @media (max-width: 1023px) {
+          .cat-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+          }
+          .cat-img-wrapper { height: 200px; }
+        }
+
+        /* Large Mobile: 481px – 767px */
+        @media (max-width: 767px) {
+          .cat-section {
+            padding: clamp(24px, 4vw, 40px) clamp(16px, 4vw, 60px);
+          }
+          .cat-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+          .cat-img-wrapper { height: 170px; }
+        }
+
+        /* Mobile: 361px – 480px */
+        @media (max-width: 480px) {
           .cat-grid {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
           }
-          .cat-img-wrapper {
-            height: 200px;
-          }
+          .cat-img-wrapper { height: 200px; }
         }
-        @media (min-width: 769px) and (max-width: 1024px) {
+
+        /* Small Mobile: 360px and below */
+        @media (max-width: 360px) {
           .cat-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: 1fr;
+            gap: 10px;
           }
-          .cat-img-wrapper {
-            height: 180px;
-          }
+          .cat-img-wrapper { height: 180px; }
         }
+
       `}</style>
 
-      <section style={{
-        padding: 'clamp(24px, 5vw, 60px) clamp(16px, 5vw, 60px)',
-        background: '#faf7f4',
-      }}>
+      <section className="cat-section">
         <div className="cat-grid">
           {CATEGORIES.map((cat, i) => (
             <CategoryCard key={i} {...cat} />
@@ -117,7 +151,7 @@ function CategoryCard({ image, title, offer }) {
         <p style={{
           fontSize: 12, color: '#8a7060',
           fontFamily: "'Jost', sans-serif",
-          fontWeight: 300, marginBottom: 8,
+          fontWeight: 300, margin: '0 0 8px',
         }}>
           {offer}
         </p>
@@ -136,8 +170,14 @@ function CategoryCard({ image, title, offer }) {
             cursor: 'pointer',
             transition: 'background 0.2s, color 0.2s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = '#9b7b5a'; e.currentTarget.style.color = '#fff'; }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#5c4033'; }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = '#9b7b5a';
+            e.currentTarget.style.color = '#fff';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = '#5c4033';
+          }}
         >
           Shop Now
         </button>

@@ -46,7 +46,7 @@ const CAT_STYLE = {
   "Flooring":{bg:"#fdeef7",color:"#a8196a",border:"#f0b8da"},
 };
 const CATS = Object.keys(CAT_STYLE);
-const RPP = 10;
+const RPP_OPTIONS = [5, 10, 25, 50];
 
 // ── Row height options ─────────────────────────────────────────
 const ROW_HEIGHT_OPTIONS = [
@@ -491,7 +491,8 @@ export default function ProductTable() {
   const [showBulkDelete,setShowBulkDelete]=useState(false);
   const [showEdit,setShowEdit]=useState(false);
   const [activeItem,setActiveItem]=useState(null);
-  const [rowHeightKey, setRowHeightKey] = useState("sm");   // ← NEW
+  const [rowHeightKey, setRowHeightKey] = useState("sm");
+  const [rpp, setRpp] = useState(10);
   const cbRef=useRef(null);
   const dragItem=useRef(null);
 
@@ -508,12 +509,12 @@ export default function ProductTable() {
     return sortDir==="asc"?String(av).localeCompare(String(bv)):String(bv).localeCompare(String(av));
   }),[filtered,sortKey,sortDir]);
 
-  const totalPages=Math.max(1,Math.ceil(sorted.length/RPP));
-  const paginated=rowOrder||(sorted.slice((page-1)*RPP,page*RPP));
+  const totalPages=Math.max(1,Math.ceil(sorted.length/rpp));
+  const paginated=rowOrder||(sorted.slice((page-1)*rpp,page*rpp));
   const allChecked=paginated.length>0&&paginated.every(i=>selected.includes(i.id));
   const someChecked=paginated.some(i=>selected.includes(i.id))&&!allChecked;
 
-  useEffect(()=>{setRowOrder(null);},[page,sortKey,sortDir,search,products]);
+  useEffect(()=>{setRowOrder(null);},[page,sortKey,sortDir,search,products,rpp]);
   useEffect(()=>{if(cbRef.current)cbRef.current.indeterminate=someChecked;},[someChecked]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(()=>{if(page>totalPages)setPage(totalPages);},[totalPages]);
@@ -560,6 +561,17 @@ export default function ProductTable() {
           `}</style>
           <div className="toolbar-wrap" style={{padding:"12px 16px",borderBottom:"1px solid #dce8f0",display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
 
+            {/* Rows Per Page */}
+            <div style={{display:"flex",alignItems:"center",gap:7,flexShrink:0}}>
+              <select
+                value={rpp}
+                onChange={e=>{setRpp(Number(e.target.value));setPage(1);}}
+                style={{height:36,padding:"0 8px",borderRadius:8,border:"1.5px solid #dce8f0",background:"#f7fafd",color:"#1a2e42",fontSize:13,fontWeight:600,outline:"none",cursor:"pointer"}}>
+                {RPP_OPTIONS.map(n=><option key={n} value={n}>{n}</option>)}
+              </select>
+              <span style={{fontSize:12,color:"#8faab8",whiteSpace:"nowrap"}}>Rows per page</span>
+            </div>
+
             {/* Search */}
             <div className="toolbar-search" style={{position:"relative",flex:1,minWidth:160}}>
               <svg style={{position:"absolute",left:11,top:"50%",transform:"translateY(-50%)",pointerEvents:"none"}} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8faab8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -602,9 +614,9 @@ export default function ProductTable() {
                 style={{height:36,padding:"0 14px",borderRadius:8,border:"none",background:"#1b3a5c",color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",gap:6,flexShrink:0,whiteSpace:"nowrap"}}
                 onMouseEnter={e=>e.currentTarget.style.background="#254e7a"}
                 onMouseLeave={e=>e.currentTarget.style.background="#1b3a5c"}
-                title="Add New">
+                title="Add">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                <span className="btn-add-label">Add New</span>
+                <span className="btn-add-label">Add</span>
               </button>
 
               {/* Delete — icon + count on desktop, icon only on mobile */}
@@ -698,14 +710,20 @@ export default function ProductTable() {
           </div>
 
           {/* ── Pagination ── */}
-          <div style={{padding:"12px 20px",borderTop:"1px solid #dce8f0",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}>
+          <div style={{padding:"10px 16px",borderTop:"1px solid #dce8f0",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8,flexWrap:"wrap"}}>
             <div style={{fontSize:12,color:"#8faab8"}}>
-              Showing <strong style={{color:"#445566"}}>{sorted.length===0?0:Math.min((page-1)*RPP+1,sorted.length)}</strong>–<strong style={{color:"#445566"}}>{Math.min(page*RPP,sorted.length)}</strong> of <strong style={{color:"#445566"}}>{sorted.length}</strong>
+              Showing <strong style={{color:"#445566"}}>{sorted.length===0?0:Math.min((page-1)*rpp+1,sorted.length)}</strong> to <strong style={{color:"#445566"}}>{Math.min(page*rpp,sorted.length)}</strong> of <strong style={{color:"#445566"}}>{sorted.length}</strong> entries
             </div>
-            <div style={{display:"flex",gap:4,alignItems:"center"}}>
-              <button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} style={{...pBtn(false),opacity:page===1?0.35:1}}>‹</button>
-              {pageNums().map((p,i)=>p==="..."?<span key={"e"+i} style={{fontSize:13,color:"#8faab8",padding:"0 4px"}}>…</span>:<button key={p} onClick={()=>setPage(p)} style={pBtn(page===p)}>{p}</button>)}
-              <button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} style={{...pBtn(false),opacity:page===totalPages?0.35:1}}>›</button>
+            <div style={{display:"flex",alignItems:"center",gap:0}}>
+              {/* vertical divider */}
+              <div style={{width:1,height:24,background:"#dce8f0",marginRight:12}}/>
+              <div style={{display:"flex",gap:4,alignItems:"center"}}>
+                <button onClick={()=>setPage(1)} disabled={page===1} style={{...pBtn(false),opacity:page===1?0.35:1,fontSize:12}}>«</button>
+                <button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} style={{...pBtn(false),opacity:page===1?0.35:1,fontSize:15}}>‹</button>
+                {pageNums().map((p,i)=>p==="..."?<span key={"e"+i} style={{fontSize:13,color:"#8faab8",padding:"0 4px"}}>…</span>:<button key={p} onClick={()=>setPage(p)} style={pBtn(page===p)}>{p}</button>)}
+                <button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} style={{...pBtn(false),opacity:page===totalPages?0.35:1,fontSize:15}}>›</button>
+                <button onClick={()=>setPage(totalPages)} disabled={page===totalPages} style={{...pBtn(false),opacity:page===totalPages?0.35:1,fontSize:12}}>»</button>
+              </div>
             </div>
           </div>
         </div>

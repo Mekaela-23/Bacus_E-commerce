@@ -270,7 +270,6 @@ function EditModal({ items, onClose, onSave }) {
     Object.fromEntries(items.map(i => [i.id, { name: i.name, category: i.category, price: String(i.price) }]))
   );
   const [errors, setErrors] = useState({});
-  const [saved, setSaved] = useState({});
 
   const setField = (id, key, val) => {
     setForms(f => ({ ...f, [id]: { ...f[id], [key]: val } }));

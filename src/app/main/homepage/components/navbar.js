@@ -14,7 +14,7 @@ export default function Navbar({ cartCount = 0 }) {
           font-family: 'Jost', sans-serif;
           font-size: 13px;
           font-weight: 500;
-          color: #4a3a28;
+          color: #111111;
           text-decoration: none;
           letter-spacing: 0.08em;
           padding: 4px 0;
@@ -23,8 +23,8 @@ export default function Navbar({ cartCount = 0 }) {
         }
         .nav-links a:hover,
         .nav-links a.active {
-          color: #1e1a16;
-          border-bottom: 2px solid #c8a96e;
+          color: #000000;
+          border-bottom: 2px solid #000000;
         }
         .hamburger {
           display: none;
@@ -32,24 +32,24 @@ export default function Navbar({ cartCount = 0 }) {
           border: none;
           cursor: pointer;
           font-size: 22px;
-          color: #1e1a16;
+          color: #111111;
         }
         .mobile-menu {
           display: none;
           flex-direction: column;
           gap: 0;
-          background: #c8a96e;
+          background: #f8f4e9;
           padding: 12px 24px 20px;
-          border-top: 1px solid #b8935a;
+          border-top: 1px solid #e2ddd0;
         }
         .mobile-menu a {
           font-family: 'Jost', sans-serif;
           font-size: 14px;
           font-weight: 500;
-          color: #1e1a16;
+          color: #111111;
           text-decoration: none;
           padding: 10px 0;
-          border-bottom: 1px solid rgba(0,0,0,0.08);
+          border-bottom: 1px solid rgba(0,0,0,0.05);
           letter-spacing: 0.05em;
         }
         .mobile-menu a:last-child { border-bottom: none; }
@@ -61,9 +61,9 @@ export default function Navbar({ cartCount = 0 }) {
       `}</style>
 
       <nav style={{
-        background: '#c8a96e',
+        background: '#f8f4e9',
         padding: '0 clamp(16px, 4vw, 60px)',
-        borderBottom: '1px solid #b8935a',
+        borderBottom: '1px solid #e2ddd0',
         position: 'sticky',
         top: 0,
         zIndex: 100,
@@ -80,21 +80,19 @@ export default function Navbar({ cartCount = 0 }) {
               fontFamily: "'Playfair Display', serif",
               fontSize: '22px',
               fontWeight: '700',
-              color: '#1e1a16',
+              color: '#000000',
               letterSpacing: '2px',
-            }}>Veloure</span>
+            }}>Lumina</span>
           </a>
 
-         
-          <div className="nav-links" style={{ display: 'flex', gap: '32px' }}>
+          <div className="nav-links" style={{ display: 'flex', gap: '32px', marginLeft: 'auto', marginRight: '32px' }}>
             <a href="/" className="active">Home</a>
-            <a href="/women">Women</a>
-            <a href="/men">Men</a>
-            <a href="/sale">Sale</a>
-            <a href="/about">About</a>
+            <a href="/">Crystal</a>
+            <a href="/">Modern</a>
+            <a href="/">Vintage</a>
+            <a href="/">About</a>
           </div>
 
-          
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
            
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex' }}>
@@ -103,19 +101,10 @@ export default function Navbar({ cartCount = 0 }) {
               </svg>
             </button>
 
-           
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex' }}>
-              <svg width="20" height="20" fill="none" stroke="#1e1a16" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-            </button>
-
-        
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex' }}>
               <img src="https://i.ibb.co/VpHdsQ2z/user.png" alt="Account" width={22} height={22} style={{ objectFit: 'contain' }} />
             </button>
 
-           
             <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, position: 'relative', display: 'flex' }}>
               <img src="https://i.ibb.co/VPz8Bh4/shopping-cart.png" alt="Cart" width={22} height={22} style={{ objectFit: 'contain' }} />
               {cartCount > 0 && (
@@ -140,7 +129,6 @@ export default function Navbar({ cartCount = 0 }) {
               )}
             </button>
 
-          
             <button className="hamburger" onClick={() => setMenuOpen(o => !o)}>
               {menuOpen ? '✕' : '☰'}
             </button>
@@ -148,7 +136,6 @@ export default function Navbar({ cartCount = 0 }) {
         </div>
       </nav>
 
-     
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="/women" onClick={() => setMenuOpen(false)}>Women</a>

@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Veloure',
-  description: 'Fashion for the modern wardrobe',
+  title: 'Lumina | Exquisite Chandeliers',
+  description: 'Luxury lighting for the modern home',
 };
 
 export const viewport = {

@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div style={{ fontFamily: "'Jost', sans-serif", background: '#faf7f4', minHeight: '100vh' }}>
+      <div style={{ fontFamily: "'Jost', sans-serif", background: '#f8f4e9', minHeight: '100vh', color: '#111111' }}>
         <Navbar cartCount={cartCount} />
         <HeroSection />
         <CategoriesSection />

@@ -29,9 +29,10 @@ export default function FooterSection() {
       `}</style>
 
       <footer style={{
-        background: '#faf7f4',
+        background: '#f1ede0', // Slightly darker ecru for footer
         padding: 'clamp(40px, 6vw, 60px) clamp(16px, 5vw, 80px) clamp(20px, 3vw, 30px)',
         fontFamily: "'Jost', sans-serif",
+        borderTop: '1px solid #e2ddd0',
       }}>
         
         <div style={{
@@ -42,46 +43,46 @@ export default function FooterSection() {
         }}>
         
           <div>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: '#c8a96e', letterSpacing: 2, marginBottom: 12 }}>
-              Veloure
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: '#000000', letterSpacing: 2, marginBottom: 12 }}>
+              Lumina
             </p>
-            <p style={{ fontSize: 13, lineHeight: 1.8, color: '#8a7060', margin: 0 }}>
-              Curated fashion for the modern individual. Quality pieces, timeless style.
+            <p style={{ fontSize: 13, lineHeight: 1.8, color: '#666666', margin: 0 }}>
+              Exquisite lighting for the modern home. Quality chandeliers, timeless elegance.
             </p>
           </div>
 
         
           <div>
-            <p style={{ color: '#2d1f14', fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>Shop</p>
-            {["Women's Collection", "Men's Collection", "New Arrivals", "Sale"].map(l => (
-              <a key={l} className="footer__link" href={`/${l.toLowerCase().replace(/['\s]+/g, '-')}`}>{l}</a>
+            <p style={{ color: '#000000', fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>Shop</p>
+            {["Crystal Collection", "Modern Designs", "Vintage Series", "Special Offers"].map(l => (
+              <a key={l} className="footer__link" style={{ color: '#666666' }} href="#">{l}</a>
             ))}
           </div>
 
         
           <div>
-            <p style={{ color: '#2d1f14', fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>Help</p>
+            <p style={{ color: '#000000', fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>Help</p>
             {['FAQ', 'Shipping & Returns', 'Size Guide', 'Contact Us'].map(l => (
-              <a key={l} className="footer__link" href={`/${l.toLowerCase().replace(/[&\s]+/g, '-')}`}>{l}</a>
+              <a key={l} className="footer__link" style={{ color: '#666666' }} href="#">{l}</a>
             ))}
           </div>
 
        
           <div>
-            <p style={{ color: '#2d1f14', fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>Company</p>
+            <p style={{ color: '#000000', fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>Company</p>
             {['About Us', 'Careers', 'Privacy Policy', 'Terms of Service'].map(l => (
-              <a key={l} className="footer__link" href={`/${l.toLowerCase().replace(/\s+/g, '-')}`}>{l}</a>
+              <a key={l} className="footer__link" style={{ color: '#666666' }} href="#">{l}</a>
             ))}
           </div>
         </div>
 
        
         <div style={{
-          borderTop: '1px solid #e8ddd4', paddingTop: 24,
+          borderTop: '1px solid #e2ddd0', paddingTop: 24,
           display: 'flex', flexWrap: 'wrap',
           justifyContent: 'space-between', alignItems: 'center', gap: 16,
         }}>
-          <p style={{ margin: 0, fontSize: 13, color: '#8a7060' }}>© 2026 Veloure. All rights reserved.</p>
+          <p style={{ margin: 0, fontSize: 13, color: '#888888' }}>© 2026 Lumina. All rights reserved.</p>
 
           <div style={{ display: 'flex', gap: 10 }}>
            

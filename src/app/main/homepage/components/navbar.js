@@ -82,7 +82,7 @@ export default function Navbar({ cartCount = 0 }) {
               fontWeight: '700',
               color: '#000000',
               letterSpacing: '2px',
-            }}>Luxora</span>
+            }}>Lumina</span>
           </a>
 
           <div className="nav-links" style={{ display: 'flex', gap: '32px', marginLeft: 'auto', marginRight: '32px' }}>

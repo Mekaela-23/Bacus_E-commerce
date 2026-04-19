@@ -1,6 +1,6 @@
 {
-  "short_name": "Lumina",
-  "name": "Lumina PWA Application",
+  "short_name": "My PWA Sample",
+  "name": "My PWA Sample Application",
   "icons": [
     {
       "src": "favicon.ico",

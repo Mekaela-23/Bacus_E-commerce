@@ -7,9 +7,7 @@ const CORE_ASSETS = [
      "/favicon.ico",
      "/logo192.png",
      "/logo512.png",
-     "/static/css/main.999c8b62.css",
-     "/static/js/main.1f506145.js",
-     "/static/js/453.babfae7f.chunk.js",
+     
 ];
 
 // Install Service Worker

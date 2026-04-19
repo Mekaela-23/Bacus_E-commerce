@@ -1,74 +1,68 @@
-const CACHE_NAME = "my-ecommerce-v2";
+const CACHE_NAME = "my-ecommerce-v4";
 
 const CORE_ASSETS = [
     "/",
     "/index.html",
-     "/manifest.json",
-     "/favicon.ico",
-     "/logo192.png",
-     "/logo512.png",
-     
+    "/manifest.json",
+    "/favicon.ico",
+    "/logo192.png",
+    "/logo512.png",
 ];
 
-// Install Service Worker
 self.addEventListener("install", (event) => {
-event.waitUntil(
-caches.open(CACHE_NAME).then((cache) => {
-return cache.addAll(CORE_ASSETS);
-})
-);
-self.skipWaiting();
-}); 
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS))
+    );
+    self.skipWaiting();
+});
 
-// Activate Service Worker
 self.addEventListener("activate", (event) => {
-event.waitUntil(
-caches.keys().then((names) =>
-Promise.all(
-names
-.filter((name) => name !== CACHE_NAME)
-.map((name) => caches.delete(name))
-)
-)
-);
-self.clients.claim();
+    event.waitUntil(
+        caches.keys().then((names) =>
+            Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
+        )
+    );
+    self.clients.claim();
 });
 
-
-// Cache First Strategy
 async function cacheFirst(request) {
-const cache = await caches.open(CACHE_NAME);
-const cached = await cache.match(request);
-
-if (cached) return cached;
-
-const networkResponse = await fetch (request);
-cache.put(request, networkResponse.clone());
-return networkResponse;
-};
-
-// Network First Strategy
-async function networkFirst (request) {
-const cache = await caches.open(CACHE_NAME);
-try {
-const networkResponse = await fetch (request)
-cache.put(request, networkResponse.clone());
-return networkResponse;
-} catch {
-return cache.match(request);
-}
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    const networkResponse = await fetch(request);
+    cache.put(request, networkResponse.clone());
+    return networkResponse;
 }
 
-// Fetch Handler
+async function networkFirst(request) {
+    const cache = await caches.open(CACHE_NAME);
+    try {
+        const networkResponse = await fetch(request);
+        cache.put(request, networkResponse.clone());
+        return networkResponse;
+    } catch {
+        const cached = await cache.match(request);
+        return cached || new Response("Offline", { status: 503 });
+    }
+}
+
 self.addEventListener("fetch", (event) => {
-const request = event.request;
-// HTML navigation
-if (request.mode === "navigate") {
-event.respondWith(networkFirst (request));
-return;
-}
+    const request = event.request;
+    const url = new URL(request.url);
 
-// Static assets
-event.respondWith(cacheFirst(request));
+    // Skip non-GET and cross-origin
+    if (request.method !== "GET") return;
+    if (!url.origin.includes(self.location.origin)) return;
+
+    if (request.mode === "navigate") {
+        event.respondWith(networkFirst(request));
+        return;
+    }
+
+    if (url.pathname.startsWith("/static/")) {
+        event.respondWith(cacheFirst(request));
+        return;
+    }
+
+    event.respondWith(cacheFirst(request));
 });
-

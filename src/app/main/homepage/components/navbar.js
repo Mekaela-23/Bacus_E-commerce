@@ -138,9 +138,9 @@ export default function Navbar({ cartCount = 0 }) {
 
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
         <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="/women" onClick={() => setMenuOpen(false)}>Women</a>
-        <a href="/men" onClick={() => setMenuOpen(false)}>Men</a>
-        <a href="/sale" onClick={() => setMenuOpen(false)}>Sale</a>
+        <a href="/women" onClick={() => setMenuOpen(false)}>Crystal</a>
+        <a href="/men" onClick={() => setMenuOpen(false)}>Modern</a>
+        <a href="/sale" onClick={() => setMenuOpen(false)}>Vintage</a>
         <a href="/about" onClick={() => setMenuOpen(false)}>About</a>
       </div>
     </>

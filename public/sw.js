@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-ecommerce-v4";
+const CACHE_NAME = "my-ecommerce-v1";
 
 const CORE_ASSETS = [
     "/",

@@ -1,6 +1,6 @@
 {
-  "short_name": "My PWA Sample",
-  "name": "My PWA Sample Application",
+  "short_name": "CRUD",
+  "name": "My CRUD Application",
   "icons": [
     {
       "src": "favicon.ico",

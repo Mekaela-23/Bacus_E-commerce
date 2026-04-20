@@ -5,13 +5,13 @@ import reportWebVitals from './reportWebVitals';
 // import HomePage from './app/main/homepage/page';
 import swDev from './swDev';
 // import ProductList from './form-data/view';
-// import HomePage from './app/main/homepage/page';
-import ProductForm from './form-data';
+import HomePage from './app/main/homepage/page';
+// import ProductForm from './form-data';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ProductForm/>  
+    <HomePage/>  
   </React.StrictMode>
 );
 

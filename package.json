@@ -1,4 +1,16 @@
 {
+<<<<<<< HEAD
+  "scripts": {},
+  
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mysql2": "^3.20.0"
+  }
+}
+
+=======
   "name": "bacus_3a_react",
   "version": "0.1.0",
   "private": true,
@@ -41,3 +53,4 @@
     "vite-plugin-pwa": "^1.2.0"
   }
 }
+>>>>>>> 7f389038f3dd124f501d1b4b74bfd4602a466bae

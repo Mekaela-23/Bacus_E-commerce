@@ -4,7 +4,8 @@ import api from "../api/axios";
 export default function ProductList({ onEdit }) {
     const [products, setProducts] = useState([]);
 
-        const fetchProducts = async () => {
+    
+    const fetchProducts = async () => {
             try {
                 const res = await api.get("/api/v1/products");
                 const data = res.data.data;

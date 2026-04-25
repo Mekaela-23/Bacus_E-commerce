@@ -93,7 +93,7 @@ export default function ProductForm() {
                             <label style={{ display: 'block', marginBottom: 4, fontSize: 13 }}>Product Name</label>
                             <input
                                 type="text"
-                                placeholder=""
+                                placeholder="Product Name"
                                 value={product}
                                 onChange={(e) => setProduct(e.target.value)}
                                 style={{ width: '100%', padding: '5px 8px', border: '2px solid #aaa', fontSize: 13, boxSizing: 'border-box' }}
@@ -104,7 +104,7 @@ export default function ProductForm() {
                             <label style={{ display: 'block', marginBottom: 4, fontSize: 13 }}>Category</label>
                             <input
                                 type="text"
-                                placeholder=""
+                                placeholder="Category"
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
                                 style={{ width: '100%', padding: '5px 8px', border: '2px solid #aaa', fontSize: 13, boxSizing: 'border-box' }}
